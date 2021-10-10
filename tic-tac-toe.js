@@ -1,23 +1,32 @@
 "use strict";
 window.onload=function(){
-    var body =document.getElementsByTagName("body");
-    console.log(body);
-    var myDiv1= document.getElementById("game");
-    console.log(myDiv1);
-    console.log(myDiv1.parentNode);
-    //console.log(myDiv1.childNodes);
-    console.log(myDiv1.children);
+    var body= document.getElementsByTagName("body");
+    var gameboard= document.getElementById("game");
+    var plays= [];
+
+
 
     var boxes=document.getElementById("board").getElementsByTagName("div");
     for(var i=0;i<boxes.length;i++){
         boxes[i].className= "square";
     }
-    
-    //var newGame =document.querySelector("button");
-    //newGame.addEventListener("click", function(element){
-       // console.log("Button Clicked");
-        
-    //});
+   
+    var j=0;
+    for (const item of boxes){
+        item.addEventListener("click",function(){
+            console.log("square clicked");
+            if (j%2==0){
+                item.textContent="X";
+                item.classList.add("X");
+            }
+            else{
+                item.textContent="O";
+                item.classList.add("O");
+            }
+            j++;
+        })
+    }
+
 
 
 }
