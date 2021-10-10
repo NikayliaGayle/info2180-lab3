@@ -16,6 +16,7 @@ window.onload=function(){
    
     var j=0;
     for (const item of boxes){
+        
         item.addEventListener("click",function(){
             console.log("square clicked");
             if (j%2==0){
@@ -36,7 +37,8 @@ window.onload=function(){
                 
             }
             j++;
-        })
+        },{once:true});
+        //item.removeEventListener("click",function());
 
         function Winner(){
             for (var m=0;m<winWays.length;m++){
@@ -54,10 +56,12 @@ window.onload=function(){
                     if (a=='X'){
                         document.getElementById("status").classList.add("you-won");
                         document.getElementById("status").textContent="Congratulations! X is the Winner!"
+                        break;
                     }
                     if (a=='O'){
                         document.getElementById("status").classList.add("you-won");
                         document.getElementById("status").textContent="Congratulations! O is the Winner!"
+                        break;
                     }
                 }
                 else if(playsO.length+playsX.length==9){
@@ -82,5 +86,19 @@ window.onload=function(){
     }
 
 
+    var newGame=document.querySelector("button");
+    newGame.addEventListener("click", function(){
+        for (var k=0;k<boxes.length;k++){
+            boxes[k].classList.remove("X");
+            boxes[k].classList.remove("O");
+            boxes[k].textContent='';
+            j=0;
+            playsX=[];
+            playsO=[];
+            document.getElementById("status").classList.remove("you-won");
+            document.getElementById("status").textContent="Move your mouse over a square and click to play an X or an O.";
+        }
+    });
+    
 
 }
